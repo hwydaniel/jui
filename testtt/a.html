@@ -1,0 +1,17 @@
+<h1>Links</h1>
+
+<ol>
+    <li><a href="page1.html" class="yui3-pjax">Page1 One</a></li>
+    <li><a href="page2.html" class="yui3-pjax">Page Two</a></li>
+    <li><a href="page3.html" class="yui3-pjax">Page Three</a></li>
+</ol>
+
+<div id="content"></div>
+
+<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+<script>
+YUI().use('pjax', function (Y) {
+    new Y.Pjax({container: '#content'});
+});
+</script>
+

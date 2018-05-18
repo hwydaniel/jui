@@ -1,0 +1,143 @@
+<!--弹出层-->
+
+<link type="text/css" rel="stylesheet" href="<?php echo base_url('admstyle/zdialog/css/zdialog.css');?>" />
+<script type="text/javascript" src="<?php echo base_url('admstyle/zdialog/js/zdialog.js');?>"></script>
+
+<div class="padding-md">
+    <h2 class="header-text">
+        修改图片
+    </h2>
+
+    <div class="smart-widget">
+        <div class="smart-widget-header">修改图片</div>
+        <div class="smart-widget-inner">
+            <div class="smart-widget-hidden-section">
+                <ul class="widget-color-list clearfix">
+                    <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                    <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                    <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                    <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                    <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                    <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                    <li style="background-color:#e36159;" data-color="widget-red"></li>
+                    <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                    <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                    <li style="background-color:#fff;" data-color="reset"></li>
+                </ul>
+            </div>
+            <div class="smart-widget-body">
+                <form id="formToggleLine" action="<?php echo site_url('admin/Banner/bannerEdit')?>" method="post" enctype="multipart/form-data" class="form-horizontal no-margin form-border">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">图片描述</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" name="img_desc" type="text" placeholder="请输入图片描述" value="<?php echo $img_info['img_desc'];  ?>"/>
+                            <input name="img_id" type="hidden" value="<?php echo $img_id;  ?>"/>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">图片跳转</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" name="img_jump" type="text" placeholder="请输入图片跳转地址" value="<?php echo $img_info['img_jump'];  ?>"/>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">图片类型</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" name="img_type">
+                                <option value="">请选择图片类型</option>
+                                <?php if ($img_info['img_type'] == 1) { ?>
+                                <option value="1" selected>主轮播</option>
+                                <?php   } else {  ?>
+                                <option value="1">主轮播</option>
+                                <?php } ?>
+                                <?php if ($img_info['img_type'] == 2) { ?>
+                                <option value="2" selected>文苑</option>
+                                <?php   } else {  ?>
+                                <option value="2" >文苑</option>
+                                <?php } ?>
+                                <?php if ($img_info['img_type'] == 3) { ?>
+                                <option value="3" selected>房</option>
+                                <?php   } else {  ?>
+                                <option value="3" >房</option>
+                                <?php } ?>
+                            </select>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">图片</label>
+                        <div class="col-lg-10">
+                            <img src="<?php echo base_url('admstyle/upload/banner/'.$img_info['img_name']); ?>" width="120px" height="120px"/>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">图片上传</label>
+                        <div class="col-lg-10">
+                            <input type="file" name="img_name"/>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"></label>
+                        <div class="col-lg-10">
+                            <!--<button type="submit" class="btn btn-danger">添加</button>-->
+                            <button type="submit" class="btn btn-danger">提交</button>
+                        </div><!-- /.col -->
+                    </div><!-- /form-group -->
+
+                </form>
+            </div>
+        </div><!-- ./smart-widget-inner -->
+    </div><!-- ./smart-widget -->
+</div><!-- ./padding-md -->
+
+<script>
+    function alerts(){
+        $.DialogByZ.Close();
+    }
+
+    function confirmL(){
+        $.DialogByZ.Close();
+        $.DialogByZ.Alert({Title: "提示", Content: "您要求稍后开通",BtnL:"确定"})
+    }
+
+    $(document).ready(function(){
+        var options = {
+            type:'post',           //post提交
+            //url:'http://ask.tongzhuo100.com/server/****.php?='+Math.random(),   //url
+            dataType:"json",        //json格式
+            data:{},    //如果需要提交附加参数，视情况添加
+            clearForm: false,        //成功提交后，清除所有表单元素的值
+            resetForm: false,        //成功提交后，重置所有表单元素的值
+            cache:false,
+            async:false,          //同步返回
+            //提交前的逻辑处理
+            beforeSend : function() {
+                $.DialogByZ.Loading('<?php echo base_url("admstyle/zdialog/image/loading.png")?>');
+            },
+            success:function(data){
+                $.DialogByZ.Close();
+                console.log(data);
+                if(data.error==1){
+                    $.DialogByZ.Close();
+                    $.DialogByZ.Alert({Title: "提示", Content: data.message,BtnL:"确定"})
+                }else{
+                    $.DialogByZ.Close();
+                    $.DialogByZ.Alert({Title: "提示", Content: data.message,BtnL:"确定", FunL: function () {
+                        window.location.href=data.url;
+                    }})
+                }
+                //服务器端返回处理逻辑
+            },
+            error:function(XmlHttpRequest,textStatus,errorThrown){
+                $.DialogByZ.Close();
+                $.DialogByZ.Alert({Title: "提示", Content: '操作失败:服务器处理失败',BtnL:"确定"})
+
+            }
+        };
+        // bind form using 'ajaxForm'
+        $('#formToggleLine').ajaxForm(options).submit(function(data){
+            //无逻辑
+        });
+    });
+
+</script>

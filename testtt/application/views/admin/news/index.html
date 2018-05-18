@@ -1,0 +1,105 @@
+
+<div class="padding-md">
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span><a href="javascript:"> 新闻管理</a></li>
+
+    </ul>
+
+
+    <div class="smart-widget">
+        <div class="smart-widget-header">
+            新闻列表
+            <span class="smart-widget-option">
+                <a href="<?php echo site_url('admin/News/newsAdd'); ?>" >+添加新闻</a>
+            </span>
+        </div>
+        <div class="smart-widget-inner">
+            <div class="smart-widget-body">
+                <div class="form-group">
+                    <form action="<?php echo site_url('admin/Banner/index')  ?>" method="put">
+                        <div class="col-lg-3" style="margin-bottom: 10px; margin-left: -10px;">
+
+                        </div><!-- /.col -->
+                        <span><button type="submit" class="btn btn-danger">搜索</button></span>
+                    </form>
+                </div><!-- /form-group -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>图片id</th>
+                        <th>图片类型</th>
+                        <th>添加时间</th>
+                        <th>图片名</th>
+                        <th>图片描述</th>
+                        <th>图片跳转地址</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td colspan="7">
+                            <div id="pagelist">
+                                <ul>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- ./smart-widget-inner -->
+    </div><!-- ./smart-widget -->
+    <style>
+        #pagelist ul li { float:left;border:1px solid #e0691a; height:20px; font-weight:bold; line-height:20px; margin:0px 2px; list-style:none;}
+        #pagelist ul li a,
+        .current { background:#FFB27A; display:block; padding:0px 6px; font-weight:bold;}
+        .current{
+            color:#fff;
+        }
+    </style>
+
+    <link type="text/css" rel="stylesheet" href="<?php echo base_url('admstyle/zdialog/css/zdialog.css');?>" />
+    <script type="text/javascript" src="<?php echo base_url('admstyle/zdialog/js/zdialog.js');?>"></script>
+    <script>
+
+        function del(id) {
+            $.DialogByZ.Confirm({Title: "", Content: "确认删除？",FunL: function () {
+                $.ajax({
+                    url:'<?php echo site_url("admin/Banner/bannerDel"); ?>',
+                    type:'post',
+                    dataType:'json',
+                    data:{img_id:id},
+                    success:function(data){
+                        $.DialogByZ.Close();
+                        console.log(data);
+                        if(data.error==1){
+                            $.DialogByZ.Close();
+                            $.DialogByZ.Alert({Title: "提示", Content: data.message,BtnL:"确定"})
+                        }else{
+                            $.DialogByZ.Close();
+                            $.DialogByZ.Alert({Title: "提示", Content: data.message,BtnL:"确定", FunL: function () {
+                                window.location.href=data.url;
+                            }})
+                        }
+                        //服务器端返回处理逻辑
+                    },
+                    error:function(XmlHttpRequest,textStatus,errorThrown){
+                        $.DialogByZ.Close();
+                        $.DialogByZ.Alert({Title: "提示", Content: '操作失败:服务器处理失败',BtnL:"确定"})
+
+                    }
+                })
+            },FunR:function(){
+                $.DialogByZ.Close();
+
+            }})
+
+        }
+    </script>
+
+
+</div><!-- ./padding-md -->
+
+

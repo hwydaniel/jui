@@ -1,0 +1,92 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<!-- 左侧菜单-->
+<aside class="sidebar-menu fixed">
+    <div class="sidebar-inner scrollable-sidebar">
+        <div class="main-menu">
+            <ul class="accordion mul">
+                <li class="menu-header">
+                    珍岛后台
+                </li>
+                <li class="bg-palette1 active jump">
+                    <a href="<?php echo site_url('admin/adminindex/landing');?>" target="option">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
+										<span class="text m-left-sm">珍岛后台</span>
+									</span>
+									<span class="menu-content-hover block">
+										Home
+									</span>
+                    </a>
+                </li>
+                <li class="bg-palette2 jump">
+                    <a href="<?php echo site_url('admin/adminindex/index');?>">
+
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">首页</span>
+									</span>
+                        <span class="menu-content-hover block">首页</span>
+                    </a>
+                </li>
+                <li class="openable bg-palette3">
+                <!--<li class="openable bg-palette3  open">-->
+                    <a href="#">
+
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">图片管理</span>
+										<span class="submenu-icon"></span>
+									</span>
+									<span class="menu-content-hover block">
+										图
+									</span>
+                    </a>
+                    <ul class="submenu bg-palette4 ">
+                        <li class="active"><a href="<?php echo site_url('admin/Banner/index')?>" ><span class="submenu-label">轮播管理</span></a></li>
+                    </ul>
+                </li>
+                <li class="news openable bg-palette3">
+                    <!--<li class="openable bg-palette3  open">-->
+                    <a href="#">
+
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">新闻管理</span>
+										<span class="submenu-icon"></span>
+									</span>
+									<span class="menu-content-hover block">
+										图
+									</span>
+                    </a>
+                    <ul class="submenu bg-palette4 ">
+
+                        <li><a href="<?php echo site_url('admin/News/index')?>"><span class="submenu-label">新闻列表</span></a></li>
+                    </ul>
+                </li>
+
+
+
+
+            </ul>
+        </div>
+    </div><!-- sidebar-inner -->
+</aside>
+
+<script>
+
+        var str = window.location.href;
+        if (str.indexOf('Banner') > 0) {
+            $(".openable").addClass("open");
+        } else {
+            $(".openable").removeClass("open");
+        }
+
+        if (str.indexOf('News') > 0) {
+            $(".news").addClass("open");
+        } else {
+            $(".news").removeClass("open");
+        }
+
+
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>珍岛集团</title>
+	<meta name="keywords" content="珍岛集团">
+	<meta name="description" content="珍岛集团">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<?php $this->load->view('home/public/home_style.html') ?>
+</head>
+<body>
+	
+<div>
+	<!--header-->
+	<?php $this->load->view('home/public/header.html') ?>
+			
+	<!--banner  start-->
+	<section class="banner_zi">
+	    <div><img src="<?php echo base_url('commstyle/images/banner_contact.png')?>" alt=""></div>
+	</section>
+	<!--banner end-->
+	<div class="head_bar">
+		<span>位置：</span><a href="index.html">首页 </a> > <span class="active">联系我们</span>
+	</div>
+		<div class="contact_con">
+			<div class="top_tit">
+				<span class="span1"><a href="contact.html">联系我们</a></span><br />
+				<span class="con_span">您好，如您有珍岛的相关问题，可直接联系我们！</span>
+			</div>
+			<div class="nei clearfix">
+				<div class="left">
+					<a href="mailto:Eason.wang@71360.com"><img src="<?php echo base_url('commstyle/images/email.png')?>" alt="" />Eason.wang@71360.com</a>
+					<a href="tel:021-31265245"><img src="<?php echo base_url('commstyle/images/phone.png')?>" alt="" />021-31265245</a>
+					<a href="tel:189 1610 1908"><img src="<?php echo base_url('commstyle/images/shouji.png')?>" alt="" />189 1610 1908</a>
+					<span > <img src="<?php echo base_url('commstyle/images/weizhi.png')?>" alt="" />上海市虹口区水电路682号 天虹商务大
+厦6F、7F、11F</span>
+				<a href="http://map.baidu.com/?newmap" target="_blank" class="ditu"><i class="fa fa-search"></i>查看地图</a>
+				</div>
+				<div class="right"></div>
+			</div>
+		</div>
+
+	<!--footer  start-->
+	<?php $this->load->view('home/public/footer.html') ?>
+	<!--footer  end-->
+	<?php $this->load->view('home/public/mheader.html') ?>
+	<!--移动端  Mmenu-->
+</div>
+
+
+</body>
+</html>

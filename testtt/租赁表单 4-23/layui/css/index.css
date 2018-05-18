@@ -1,0 +1,30 @@
+.choose-screening-input {
+    position: relative;
+}
+
+.auto-screening {
+    position: absolute;
+    z-index: 9;
+    overflow-y: auto;
+    border: 1px solid #D2D2D2;
+    top: 40px;
+    height: 216px;
+    border-radius: 5px;
+}
+
+.auto-screening-prompt {
+    width: 160px;
+    height: 36px;
+    line-height: 36px;
+    background: #ffffff;
+    padding: 0 10px;
+}
+
+.auto-screening-prompt:hover {
+    background: #cccccc;
+}
+
+.auto-hidden {
+    display: none;
+}
+#demo1,#demo2,#demo3{width:180px;height: 120px; }
